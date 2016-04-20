@@ -1,0 +1,24 @@
+{
+  "name": "angularnode",
+  "version": "1.0.0",
+  "description": "learning purpose coding",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ruddra/Angular-Node.git"
+  },
+  "author": "Arnab",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/ruddra/Angular-Node/issues"
+  },
+  "homepage": "https://github.com/ruddra/Angular-Node#readme",
+  "dependencies": {
+    "body-parser": "^1.15.0",
+    "express": "^4.13.4",
+    "morgan": "^1.7.0"
+  }
+}
