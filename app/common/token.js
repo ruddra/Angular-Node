@@ -1,7 +1,7 @@
 var tokenGenerator = require('jsonwebtoken');
 var config = require('../../config');
 var secretKey = config.secretKey;
-var expiresInMinute = config.expiresInMinute;
+var _expiresInMinute = config.expiresInMinute;
 
 module.exports.createToken = function(user){
 	var token = tokenGenerator.sign({
@@ -9,8 +9,18 @@ module.exports.createToken = function(user){
 		username: user.username,
 		_id: user._id
 	}, secretKey, {
-		expiresInMinute: expiresInMinute	
+		expiresInMinute: _expiresInMinute
 	});
 
 	return token
 }
+
+module.exports.verifyToken = function (token) {
+	 tokenGenerator.verify(token, secretKey, function (err, decoded) {
+	 	 if(err){
+	 	 	return false;
+	 	 } else{
+	 	 	return decoded;
+	 	 };
+	 });
+};

@@ -1,5 +1,5 @@
 module.exports = {
-	"database": "mongodb://root:root@ds013911.mlab.com:13911/ruddra",
+	"database": "mongodb://root:root@ds013221.mlab.com:13221/testathome",
 	"port": 3000,
 	"secretKey": "None",
 }

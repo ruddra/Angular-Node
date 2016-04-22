@@ -8,7 +8,7 @@ mongoose.connect(config.database, function (err) {
 	if(err){
 		console.log(err);
 	}else{
-		console.log('DB connected');
+		console.log('Connection to Database has been successful');
 	}
 });
 
@@ -31,6 +31,6 @@ if(err){
 	console.log('Error occured');
 	console.log(err);
 }else{
-	console.log('Started Server on port'+ config.port);
+	console.log('Listening to port '+ config.port);
 }
 });

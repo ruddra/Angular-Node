@@ -1,5 +1,6 @@
 var User = require('../models/user');
 var token = require('../common/token');
+var authMiddleware = require('../middleware/authenticate');
 
 module.exports = function (app, express) {
     var api = express.Router();
@@ -22,17 +23,7 @@ module.exports = function (app, express) {
      	 
      });
      
-    // all users
-    api.get('/all-users', function (req, resp) {
-     	 User.find({}, function (err, users) {
-     	 	if(err){
-     	 	 	resp.send(err);
-     	 	}else{
-     	 	 	resp.json(users);
-     	 	};
-     	});
-    });
-
+    // login
     api.post('/login', function (req, resp) {
     	 User.findOne({
     	 	username: req.body.username,
@@ -57,6 +48,19 @@ module.exports = function (app, express) {
     	 	 	};
     	 	 };
     	 });
+    });
+
+    authMiddleware(api);  //using middleware
+    
+    // all users
+    api.get('/all-users', function (req, resp) {
+     User.find({}, function (err, users) {
+        if(err){
+            resp.send(err);
+        }else{
+            resp.json(users);
+        };
+    });
     });
 
     
