@@ -1,26 +1,26 @@
 var tokenGenerator = require('jsonwebtoken');
 var config = require('../../config');
 var secretKey = config.secretKey;
-var _expiresInMinute = config.expiresInMinute;
+var expiryTime = config.expirySeconds;
 
 module.exports.createToken = function(user){
 	var token = tokenGenerator.sign({
 		name: user.name,
 		username: user.username,
-		_id: user._id
+		id: user._id
 	}, secretKey, {
-		expiresInMinute: _expiresInMinute
+		expiresIn: expiryTime,
 	});
 
 	return token
 }
 
-module.exports.verifyToken = function (token) {
-	 tokenGenerator.verify(token, secretKey, function (err, decoded) {
+module.exports.verifyToken = function (token, callback) {
+	tokenGenerator.verify(token, secretKey, function (err, decoded) {
 	 	 if(err){
-	 	 	return false;
+	 	 	 callback(false);
 	 	 } else{
-	 	 	return decoded;
+	 	 	callback(decoded);
 	 	 };
 	 });
 };

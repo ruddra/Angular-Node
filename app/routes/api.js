@@ -1,4 +1,5 @@
 var User = require('../models/user');
+var Blog = require('../models/blog');
 var token = require('../common/token');
 var authMiddleware = require('../middleware/authenticate');
 
@@ -62,6 +63,40 @@ module.exports = function (app, express) {
         };
     });
     });
+
+    api.route('/')
+       .post(function (req, resp){
+           var blog = Blog({
+            author: req.decoded.id,
+            title: req.body.title,
+            content: req.body.content,
+           });
+
+           blog.save(function (err) {
+                if(err){
+                    resp.send(err);
+                    return;
+                }else{
+                    resp.json({message: "New entry created", success: true});
+                };
+           })
+           
+        })
+       .get(function (req, resp) {
+            Blog.find({author: req.decoded.id}, function (err, blogs) {
+                if(err){
+                    resp.send(err);
+                    return;
+                }else{
+                    console.log('came here')
+                    resp.json(blogs);
+                }
+            })
+       });
+
+    api.get('/me', function (req, resp) {
+         resp.json(req.decoded);
+    })
 
     
     return api;
