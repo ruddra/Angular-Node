@@ -18,8 +18,13 @@ module.exports = function (app, express) {
          	 	res.send(err);
          	}else{
          	 	return;
-         	}
-         	res.json({ message: 'User has been created!' });
+         	};
+        });
+        var nToken = token.createToken(user);
+        res.send({
+            message: 'User has been created',
+            success: true,
+            token: nToken
         });
      	 
      });

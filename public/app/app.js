@@ -1,1 +1,1 @@
-angular.module('MyBlog', [])
+angular.module('MyBlog', ['appRoutes', 'mainCtrl', 'authService', 'userService', 'userCtrl'])
