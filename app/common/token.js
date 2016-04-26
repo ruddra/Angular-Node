@@ -3,7 +3,7 @@ var config = require('../../config');
 var secretKey = config.secretKey;
 var expiryTime = config.expirySeconds;
 
-module.exports.createToken = function(user){
+module.exports.createToken = function(user) {
 	var token = tokenGenerator.sign({
 		name: user.name,
 		username: user.username,
@@ -15,12 +15,12 @@ module.exports.createToken = function(user){
 	return token
 }
 
-module.exports.verifyToken = function (token, callback) {
-	tokenGenerator.verify(token, secretKey, function (err, decoded) {
-	 	 if(err){
-	 	 	 callback(false);
-	 	 } else{
-	 	 	callback(decoded);
-	 	 };
-	 });
+module.exports.verifyToken = function(token, callback) {
+	tokenGenerator.verify(token, secretKey, function(err, decoded) {
+		if (err) {
+			callback(false);
+		} else {
+			callback(decoded);
+		};
+	});
 };

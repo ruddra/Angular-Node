@@ -1,17 +1,41 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-	<meta charset="UTF-8">
-	<title>Home</title>
-</head>
-<body>
-<div class="jumbotron text-center">
+<div class="jumbotron text-center" ng-if='!main.loggedIn'>
 	<div>
 	<h1>Please don't sign up. Its only for development.</h1> <br/>
 	<a href="/login" class="btn-primary btn">Login</a> <br/><br/>
 	<a href="/signup" class="btn-primary btn">Signup</a>
 	</div>
 </div>
+
+<div class="row" ng-if="main.loggedIn">
+<div class="col-md-8">
 	
-</body>
-</html>
+</div>
+
+<div class="col-md-6 text-center" ng-controller="BlogController as blog">
+    <div class="row">
+         <div class="text-center">
+         <h1 class="text-center"> Write your blog </h1>
+
+         <div class="">
+         <form ng-submit="blog.createBlog()">
+
+             <input class="form-control" type="text" ng-model="blog.blogData.title" required="true" placeholder="Title">
+             <input class="form-control input-lg" type="text" ng-model="blog.blogData.content" required="true" placeholder="Content">
+             <br/>
+             <button type="submit" class="btn btn-primary">Post!</button>
+         </form>
+    </div>
+    <hr/>
+
+    <div class="col-md-12 container">
+    <h2>Your blogs</h2>
+    
+    	<div ng-repeat="each in blog.blogs">
+    	<h2> {{ each.title }} </h2>
+    	<p> {{ each.content }} </p>
+    	<b> {{ each.created }} </b>
+    	<br/>
+    	</div>
+    </div>
+</div>
+</div>

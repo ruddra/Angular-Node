@@ -1,19 +1,25 @@
 angular.module('appRoutes', ['ngRoute'])
-       .config(function ($routeProvider, $locationProvider) {
-       	 /* body... */ 
-       	$routeProvider
-       	 .when('/', {
-       	 	templateUrl: 'app/views/pages/home.html'
-       	 })
+      .config(function($routeProvider, $locationProvider) {
+            /* body... */
+            $routeProvider
+                  .when('/', {
+                        templateUrl: 'app/views/pages/home.html',
+                        contorller: 'MainController',
+                        controllerAs: 'main'
+                  })
 
-       	 .when('/login',{
-       	 	templateUrl: 'app/views/pages/login.html'
-       	 })
+            .when('/login', {
+                  templateUrl: 'app/views/pages/login.html'
+            })
 
-             .when('/signup', {
+            .when('/logout', {
+                  templateUrl: 'app/views/pages/home.html'
+            })
+
+            .when('/signup', {
                   templateUrl: 'app/views/pages/signup.html'
-             })
+            })
 
-        $locationProvider.html5Mode(true);
+            $locationProvider.html5Mode(true);
 
-       })
+      })

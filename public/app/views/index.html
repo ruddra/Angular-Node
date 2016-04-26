@@ -4,43 +4,47 @@
 		<base href='/'>
 		<meta charset="UTF-8">
 		<title>My Blog</title>
-		<link rel="stylesheet" type="text/css" href="app/css/bootstrap.css">
+		<link rel="stylesheet" type="text/css" href="static/css/bootstrap.css">
 </head>
 <body>
-	<script type="text/javascript" src="app/js/angular.js"></script>
-	<script type="text/javascript" src="app/js/angular-route.js"></script>
-	<script type="text/javascript" src="app/js/jquery.js"></script>
-	<script type="text/javascript" src="app/js/bootsrap.js"></script>
+	<script type="text/javascript" src="static/js/angular.js"></script>
+	<script type="text/javascript" src="static/js/angular-route.js"></script>
+	<script type="text/javascript" src="static/js/jquery.js"></script>
+	<script type="text/javascript" src="static/js/bootsrap.js"></script>
+	<!-- <script type="text/javascript" src="/socket.io/socket.io"></script> -->
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/1.4.5/socket.io.js"></script>
 	<!-- Contorller -->
 	<script type="text/javascript" src="app/controllers/mainCtrl.js"></script>	
 	<script type="text/javascript" src="app/controllers/userCtrl.js"></script>	
+	<script type="text/javascript" src="app/controllers/blogCtrl.js"></script>	
 	<!-- Services -->
 	<script type="text/javascript" src="app/services/authService.js"></script>	
 	<script type="text/javascript" src="app/services/userService.js"></script>	
+	<script type="text/javascript" src="app/services/blogService.js"></script>	
 	<!-- Routes -->
 	<script type="text/javascript" src="app/app.routes.js"></script>
 
 	<script type="text/javascript" src="app/app.js"></script>
     <div class="container" ng-controller="MainController as main">
-    <header>
-    	<div class="nav navbar-default">
+    	<div class="nav navbar-light">
     		<div class="container">
     		   <div class="navbar-header">
-    		      <a href="/" class="navbar-brand"> <span class="glyphicon glyphicon-book"></span>Blog</a>
+    		      <a href="/" class="navbar-brand"> <span class="glyphicon glyphicon-book"></span>MyBlog</a>
     		</div>
+
+    		<div class="pull-right">
 
     		<ul class="nav navbar-nav" ng-if="main.loggedIn">
     		   <li><a href="/users">Users</a></li>
-    		   <li> <a href='#'>Welcome {{main.user.username}}</a>a></li>
-    		   <li><a href="/logout">Log out</a></li>
+    		   <li> <a href='#'>Welcome {{main.user.username}}</a></li>
+    		   <li><a href="/logout" ng-click="main.doLogout()">Log out</a></li>
     		</ul>
 
     		 <ul class="nav navbar-nav" ng-if="!main.loggedIn">
     		   <li><a href="/login">Login</a></li>
     		   <li><a href="/signup">Signup</a></li>
     		</ul>
-
-    </header>
+    		</div>
     </main>
 	<div ng-view>
 		
