@@ -29,6 +29,19 @@ module.exports = function(app, express, io) {
         });
     });
 
+    // all blogs
+    app.get('/all-blogs', function (req, resp) {
+         Blog.find({})
+         .select('author created title content')
+         .exec(function (err, blogs) {
+              if(err){
+                resp.send(err);
+              }else{
+                resp.send(blogs);
+              };
+         });
+    });
+
     // login
     api.post('/login', function(req, resp) {
         User.findOne({

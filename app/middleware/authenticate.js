@@ -18,7 +18,7 @@ module.exports = function(api) {
 			});
 		} else {
 			resp.status(403).send({
-				message: "No token provided token",
+				message: "No token provided",
 				success: false
 			});
 		};
